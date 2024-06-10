@@ -1,9 +1,12 @@
 package com.generation.farmacia.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -26,6 +29,10 @@ public class Produtos {
 	    @NotBlank(message = "O atributo é obrigatório!")
 		@Size(min = 10, max = 1000, message = "O atributo deve conter no mínimo 05 e no máximo 100 caracteres.")
 		private String texto;
+	    
+	    @ManyToOne
+	    @JsonIgnoreProperties("produtos")
+	    private Categorias categoria;
 
 		public Long getId() {
 			return id;
